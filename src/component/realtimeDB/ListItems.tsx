@@ -1,4 +1,3 @@
-// app/components/ListItems.js
 'use client';
 
 import { useEffect, useState } from 'react';

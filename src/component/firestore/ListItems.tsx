@@ -1,8 +1,7 @@
-// app/components/ListItems.js
 'use client';
 
 import { useEffect, useState } from 'react';
-import db from '../../utils/firestore';
+import db from '@/utils/firestore';
 import { collection, getDocs } from 'firebase/firestore';
 import DeleteItem from './DeleteItem';
 

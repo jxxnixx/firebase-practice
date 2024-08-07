@@ -1,5 +1,3 @@
-// app/components/DeleteItem.js
-
 import { ref, remove } from 'firebase/database';
 import realDB from '@/utils/realtimeDB';
 import { doc, deleteDoc } from 'firebase/firestore';
