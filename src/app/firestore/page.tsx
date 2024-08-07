@@ -1,13 +1,15 @@
 import AddItem from '@/component/firestore/AddItem';
 import ListItems from '@/component/firestore/ListItems';
-import Image from 'next/image';
-import Link from 'next/link';
+import React from 'react';
 
-export default function Home() {
+const page = () => {
   return (
     <div className="bg-white h-screen w-screen text-black flex flex-col justify-center items-center">
-      <Link href={'/firestore'}>FireStore</Link>
-      <Link href={'/realtimedb'}>Realtime DB</Link>
+      <h1>Welcome to My FireStore</h1>
+      <AddItem />
+      <ListItems />
     </div>
   );
-}
+};
+
+export default page;

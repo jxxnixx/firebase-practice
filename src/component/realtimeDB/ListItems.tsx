@@ -2,22 +2,26 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import db from '../utils/firestore';
+import realDB from '@/utils/realtimeDB';
 import { collection, getDocs } from 'firebase/firestore';
 import DeleteItem from './DeleteItem';
+import { onValue, ref } from 'firebase/database';
 
 const ListItems = () => {
   const [items, setItems] = useState<any>([]);
 
   useEffect(() => {
-    const fetchItems = async () => {
-      const querySnapshot = await getDocs(collection(db, 'items'));
-      setItems(
-        querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-      );
-    };
+    const itemsRef = ref(realDB, 'items');
 
-    fetchItems();
+    onValue(itemsRef, (snapshot) => {
+      const data = snapshot.val();
+      const itemList = data
+        ? Object.keys(data).map((key) => ({ id: key, ...data[key] }))
+        : [];
+      setItems(itemList);
+
+      console.log(itemList);
+    });
   }, []);
 
   return (
@@ -26,7 +30,12 @@ const ListItems = () => {
       <ul>
         {items.map((item: any) => (
           <li key={item.id} className="border-t-2 p-2">
-            <p>{item.name}</p>
+            <p>
+              {Object.keys(item)
+                .filter((subKey) => subKey !== 'id')
+                .map((subKey) => item[subKey])
+                .join('')}
+            </p>
             <DeleteItem id={item.id} />
           </li>
         ))}

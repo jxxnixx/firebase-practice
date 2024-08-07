@@ -1,6 +1,6 @@
 // app/components/DeleteItem.js
 
-import db from '../utils/firestore';
+import db from '../../utils/firestore';
 import { doc, deleteDoc } from 'firebase/firestore';
 
 const DeleteItem = ({ id }: any) => {

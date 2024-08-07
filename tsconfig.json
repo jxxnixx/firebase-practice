@@ -27,7 +27,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/utils/firebaseConfig.js",
-    "src/utils/firestore.js"
+    "src/utils/firestore.js",
+    "src/utils/realtimeDB.js"
   ],
   "exclude": ["node_modules"]
 }
